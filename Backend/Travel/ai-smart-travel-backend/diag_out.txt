@@ -1,0 +1,11 @@
+﻿
+=== OpenAQ v3: Find locations ===
+Using Key: a7f75...
+Status: 401
+Body: {"detail":"Invalid credentials"}
+
+=== Google Directions ===
+Using Key: AIzaSyBU_Z...
+Status HTTP: 200
+API Status: REQUEST_DENIED
+Error: YouÆre calling a legacy API, which is not enabled for your project. To get newer features and more functionality, switch to the Places API (New) or Routes API. Learn more: https://developers.google.com/maps/legacy#LegacyApiNotActivatedMapError

@@ -1,0 +1,69 @@
+﻿=== E2E Test /analyze endpoint ===
+Status: 422
+
+--- Summary ---
+No summary
+
+--- Route Outputs ---
+Weather: None
+AQI: None
+Traffic Overall: None
+
+Raw Output:
+{
+  "error": "Invalid request payload.",
+  "details": [
+    {
+      "type": "missing",
+      "loc": [
+        "body",
+        "preferences",
+        "safety_priority"
+      ],
+      "msg": "Field required",
+      "input": {}
+    },
+    {
+      "type": "missing",
+      "loc": [
+        "body",
+        "preferences",
+        "cost_sensitivity"
+      ],
+      "msg": "Field required",
+      "input": {}
+    },
+    {
+      "type": "missing",
+      "loc": [
+        "body",
+        "preferences",
+        "comfort_level"
+      ],
+      "msg": "Field required",
+      "input": {}
+    },
+    {
+      "type": "missing",
+      "loc": [
+        "body",
+        "preferences",
+        "traffic_tolerance"
+      ],
+      "msg": "Field required",
+      "input": {}
+    },
+    {
+      "type": "missing",
+      "loc": [
+        "body",
+        "preferences",
+        "pollution_tolerance"
+      ],
+      "msg": "Field required",
+      "input": {}
+    },
+    {
+      "type": "missing",
+      "loc": [
+        "body

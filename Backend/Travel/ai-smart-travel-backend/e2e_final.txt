@@ -1,0 +1,51 @@
+﻿=== E2E Test /analyze endpoint ===
+Status: 200
+
+--- Summary ---
+Delhi scores 78/100 for this trip. Hare is the best match because it offers safe surroundings, high crowds, and good stay options. Current conditions show clouds weather, overall medium traffic, and AQI 80.
+
+--- API Health ---
+Weather: Live (Provider: openweathermap)
+AQI: Mocking (Provider: fallback)
+Places: Live (Provider: google_places)
+Traffic: Mocking (Provider: fallback)
+
+Response Time: 6082 ms
+
+Raw Output:
+{
+  "travel_score": 78,
+  "city": "Delhi",
+  "summary": "Delhi scores 78/100 for this trip. Hare is the best match because it offers safe surroundings, high crowds, and good stay options. Current conditions show clouds weather, overall medium traffic, and AQI 80.",
+  "recommended_area": {
+    "name": "Hare",
+    "safety_level": "Safe",
+    "crowd_level": "High",
+    "reason": "Hare balances safe surroundings, high crowds, and good accommodation value."
+  },
+  "routes": [
+    {
+      "type": "fastest",
+      "from": "New Delhi Railway Station",
+      "to": "Hare",
+      "duration": "20 mins",
+      "traffic_level": "Medium"
+    },
+    {
+      "type": "safest",
+      "from": "New Delhi Railway Station",
+      "to": "Hare",
+      "duration": "25 mins",
+      "traffic_level": "Low"
+    }
+  ],
+  "stay_options": [
+    {
+      "name": "Hare Krishna Guest House",
+      "price_per_night": 1200,
+      "rating": 4.7,
+      "budget_fit": "Good"
+    },
+    {
+      "name": "Yatri Guesthouse",
+      

@@ -1,0 +1,35 @@
+﻿============================================================
+API DIAGNOSTIC TEST
+============================================================
+
+=== OpenWeatherMap ===
+  Status: 200  (835ms)
+  Temp: 32.07░C, Condition: Clouds
+
+=== OpenAQ v2 ===
+  Status: 410  (519ms)
+  Results count: 0
+  Full response: {'message': 'Gone. Version 1 and Version 2 API endpoints are retired and no longer available. Please migrate to Version 3 endpoints.'}
+
+=== OpenAQ v3 (alternate) ===
+  Status: 401  (2264ms)
+  Keys: ['detail']
+  Results count: 0
+
+=== Google Directions ===
+  Status HTTP: 200  (598ms)
+  API Status: REQUEST_DENIED
+  Error message: YouÆre calling a legacy API, which is not enabled for your project. To get newer features and more functionality, switch to the Places API (New) or Routes API. Learn more: https://developers.google.com/maps/legacy#LegacyApiNotActivatedMapError
+
+=== Overpass (OpenStreetMap) ===
+  Status: 200  (7967ms)
+  Elements: 201
+  Named places: 191
+    - The Ambassador
+    - Master Guest House
+    - Yatri Guesthouse
+    - Hotel Metropolis
+    - Star Paradise
+
+============================================================
+DONE

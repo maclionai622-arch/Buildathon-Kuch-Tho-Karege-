@@ -1,0 +1,29 @@
+﻿
+=== OpenAQ v3: Find locations by coordinates ===
+  Locations Status: 401
+  Response: {"detail":"Invalid credentials"}
+  Error body: {"detail":"Invalid credentials"}
+
+=== OpenAQ v3: Measurements by bounding box ===
+  Status: 404
+  Response: {"detail":"Not Found"}
+
+=== Google Routes API (v2) ===
+  Status: 403
+  Response: {
+  "error": {
+    "code": 403,
+    "message": "Routes API has not been used in project 884399907981 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/routes.googleapis.com/overview?project=884399907981 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.",
+    "status": "PERMISSION_DENIED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "SERVICE_DISABLED",
+        "domain": "googleapis.com",
+        "metadata": {
+          "serviceTitle": "Routes API",
+          "consumer": "projects/884399907981",
+          "containerInfo": "884399907981",
+          "activationUrl": "https://console.developers.google.com/apis/api/routes.go
+
+DONE

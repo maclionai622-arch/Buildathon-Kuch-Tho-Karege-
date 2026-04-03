@@ -1,0 +1,197 @@
+{
+  "info": {
+    "_postman_id": "bffac8ef-78db-4dd8-bf95-b0d5dc422b77",
+    "name": "AI Smart Travel Companion",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for the AI Smart Travel Companion FastAPI backend."
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.environment.set(\"request_timestamp\", new Date().toISOString());",
+          "console.log(\"Request timestamp:\", pm.environment.get(\"request_timestamp\"));",
+          "if (pm.request.body && pm.request.body.raw) {",
+          "    console.log(\"Request payload:\", pm.request.body.raw);",
+          "}"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "request_timestamp",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health"
+          ]
+        },
+        "description": "Confirms that the backend server is running."
+      },
+      "response": []
+    },
+    {
+      "name": "Analyze Trip",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"city\": \"Delhi\",\n  \"trip_duration_days\": 3,\n  \"total_budget\": 6000,\n  \"start_location\": \"New Delhi Railway Station\",\n  \"destination_type\": \"tourist\",\n  \"preferences\": {\n    \"safety_priority\": 9,\n    \"cost_sensitivity\": 7,\n    \"comfort_level\": 6,\n    \"traffic_tolerance\": 3,\n    \"pollution_tolerance\": 4,\n    \"crowd_tolerance\": 5\n  }\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/analyze",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "analyze"
+          ]
+        },
+        "description": "Generates structured travel recommendations and a travel score for the given user input."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response contains expected contract fields\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"travel_score\");",
+              "    pm.expect(jsonData.routes).to.be.an(\"array\");",
+              "    pm.expect(jsonData.alerts).to.be.an(\"array\");",
+              "    pm.expect(jsonData.stay_options).to.be.an(\"array\");",
+              "    pm.expect(jsonData).to.have.property(\"meta\");",
+              "    pm.expect(jsonData.meta).to.have.property(\"response_time_ms\");",
+              "});"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "Analyze Trip Low Budget",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"city\": \"Delhi\",\n  \"trip_duration_days\": 3,\n  \"total_budget\": 1500,\n  \"start_location\": \"New Delhi Railway Station\",\n  \"destination_type\": \"tourist\",\n  \"preferences\": {\n    \"safety_priority\": 9,\n    \"cost_sensitivity\": 10,\n    \"comfort_level\": 4,\n    \"traffic_tolerance\": 3,\n    \"pollution_tolerance\": 4,\n    \"crowd_tolerance\": 5\n  }\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/analyze",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "analyze"
+          ]
+        },
+        "description": "Exercises the scoring logic for a constrained budget edge case."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Low budget response keeps the API contract\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"travel_score\");",
+              "    pm.expect(jsonData.routes).to.be.an(\"array\");",
+              "    pm.expect(jsonData.alerts).to.be.an(\"array\");",
+              "    pm.expect(jsonData.stay_options).to.be.an(\"array\");",
+              "});"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "name": "Analyze Trip Invalid Location",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"city\": \"Unknown Hyper City 999\",\n  \"trip_duration_days\": 3,\n  \"total_budget\": 6000,\n  \"start_location\": \"New Delhi Railway Station\",\n  \"destination_type\": \"tourist\",\n  \"preferences\": {\n    \"safety_priority\": 9,\n    \"cost_sensitivity\": 7,\n    \"comfort_level\": 6,\n    \"traffic_tolerance\": 3,\n    \"pollution_tolerance\": 4,\n    \"crowd_tolerance\": 5\n  }\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/analyze",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "analyze"
+          ]
+        },
+        "description": "Validates structured error handling for invalid city names."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "",
+              "pm.test(\"Structured error is returned\", function () {",
+              "    const jsonData = pm.response.json();",
+              "    pm.expect(jsonData).to.have.property(\"error\");",
+              "    pm.expect(jsonData).to.have.property(\"details\");",
+              "});"
+            ]
+          }
+        }
+      ],
+      "response": []
+    }
+  ]
+}
